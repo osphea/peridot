@@ -1,0 +1,38 @@
+# Copyright 2017 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+visibility = [
+  "//src/modular/bin/*",
+  "//peridot/lib/*",
+  "//src/ledger/*",
+]
+
+source_set("base64url") {
+  sources = [
+    "base64url.cc",
+    "base64url.h",
+  ]
+
+  public_deps = [
+    "//src/lib/fxl",
+  ]
+
+  deps = [
+    "//third_party/modp_b64",
+  ]
+}
+
+source_set("unittests") {
+  testonly = true
+  sources = [
+    "base64url_unittest.cc",
+  ]
+
+  deps = [
+    ":base64url",
+    "//garnet/public/lib/gtest",
+    "//third_party/googletest:gmock",
+    "//third_party/googletest:gtest",
+  ]
+}
